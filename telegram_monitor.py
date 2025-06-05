@@ -17,16 +17,15 @@ sequence = []
 async def handler(event):
     global sequence
 
-   message_text = event.message.message.strip().lower()
-print(f"📨 New message: {message_text}")
+    message_text = event.message.message.strip()
+    print(f"📨 New message: {message_text}")
 
-if message_text == "win ✅":
-    sequence.append("win")
-    print("✅ Detected: WIN")
-else:
-    sequence.append("call")
-    print("📈 Detected: SIGNAL CALL")
-
+    if message_text == "WIN ✅":
+        sequence.append("win")
+        print("✅ Detected: WIN")
+    else:
+        sequence.append("call")
+        print("📈 Detected: SIGNAL CALL")
 
     # Keep only the last 4 elements
     if len(sequence) > 4:
@@ -41,6 +40,5 @@ else:
         except Exception as e:
             print("❌ Webhook failed:", str(e))
         sequence = []  # Reset sequence after webhook
-
 
 client.run_until_disconnected()
