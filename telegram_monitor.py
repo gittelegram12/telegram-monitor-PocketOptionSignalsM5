@@ -8,6 +8,7 @@ webhook_url = "https://marisbriedis.app.n8n.cloud/webhook-test/accada36-9029-4db
 
 client = TelegramClient('user_session', api_id, api_hash)
 client.start()
+print("📡 Listening for messages...")
 
 # Pattern tracking
 sequence = []
@@ -40,5 +41,5 @@ async def handler(event):
             print("❌ Webhook failed:", str(e))
         sequence = []  # Reset sequence after webhook
 
-print("📡 Listening for messages...")
+
 client.run_until_disconnected()
