@@ -17,15 +17,16 @@ sequence = []
 async def handler(event):
     global sequence
 
-    message_text = event.message.message.lower().strip()
-    print(f"📨 New message: {message_text}")
+   message_text = event.message.message.strip().lower()
+print(f"📨 New message: {message_text}")
 
-    if "win ✅" in message_text:
-        sequence.append("win")
-        print("✅ Detected: WIN")
-    else:
-        sequence.append("call")
-        print("📈 Detected: SIGNAL CALL")
+if message_text == "win ✅":
+    sequence.append("win")
+    print("✅ Detected: WIN")
+else:
+    sequence.append("call")
+    print("📈 Detected: SIGNAL CALL")
+
 
     # Keep only the last 4 elements
     if len(sequence) > 4:
