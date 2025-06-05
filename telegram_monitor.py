@@ -3,7 +3,7 @@ import requests
 
 api_id = "20295619"
 api_hash = "1f7150b62cc6f2cf1c38f0855719272c"
-channel_username = "@baazigarn8n_bot"
+channel_username = "@PocketSignalsM1"
 webhook_url = "https://marisbriedis.app.n8n.cloud/webhook-test/accada36-9029-4db0-88d6-23b02bec865d"
 
 client = TelegramClient('user_session', api_id, api_hash)
