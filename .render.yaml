@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: PocketOptionSignalsM5
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 -u m5_monitor.py
