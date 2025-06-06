@@ -3,7 +3,6 @@ from telethon.sessions import StringSession
 import os
 import requests
 
-# Replace these with environment variables or hardcode only during local testing
 api_id = 20295619
 api_hash = "1f7150b62cc6f2cf1c38f0855719272c"
 string_session = os.getenv("STRING_SESSION")
@@ -14,7 +13,7 @@ client = TelegramClient(StringSession(string_session), api_id, api_hash)
 sequence = []
 
 async def main():
-    print("📡 Listening for messages...")
+    print("📡 Listening for messages on M5...")
 
     @client.on(events.NewMessage(chats=channel_username))
     async def handler(event):
@@ -30,19 +29,17 @@ async def main():
             sequence.append("call")
             print("📈 Detected: SIGNAL CALL")
 
-        # Keep only the last 10 messages
         if len(sequence) > 10:
             sequence.pop(0)
 
-        # Check for 5 consecutive "call → win" pairs
         if sequence == ["call", "win", "call", "win", "call", "win", "call", "win", "call", "win"]:
             print("🔥 Detected 5 consecutive SIGNAL → WIN pairs. Sending webhook...")
             try:
-                requests.post(webhook_url, json={"message": "5 consecutive trading wins detected!"})
+                requests.post(webhook_url, json={"message": "5 consecutive trading wins detected on M5!"})
                 print("✅ Webhook sent.")
             except Exception as e:
                 print("❌ Webhook failed:", str(e))
-            sequence = []  # Reset after webhook
+            sequence = []
 
     await client.start()
     await client.run_until_disconnected()
