@@ -30,14 +30,15 @@ async def main():
             sequence.append("call")
             print("📈 Detected: SIGNAL CALL")
 
-        if len(sequence) > 4:
+        # Keep only the last 8 messages
+        if len(sequence) > 8:
             sequence.pop(0)
 
-        # Check for 2 consecutive SIGNAL → WIN pairs
-        if sequence == ["call", "win", "call", "win"]:
-            print("🔥 Detected 2 consecutive SIGNAL → WIN pairs. Sending webhook...")
+        # Check for 4 consecutive SIGNAL → WIN pairs
+        if sequence == ["call", "win", "call", "win", "call", "win", "call", "win"]:
+            print("🔥 Detected 4 consecutive SIGNAL → WIN pairs. Sending webhook...")
             try:
-                requests.post(webhook_url, json={"message": "2 consecutive trading wins detected on M5!"})
+                requests.post(webhook_url, json={"message": "4 consecutive trading wins detected on M5!"})
                 print("✅ Webhook sent.")
             except Exception as e:
                 print("❌ Webhook failed:", str(e))
